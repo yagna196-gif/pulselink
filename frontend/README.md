@@ -1,54 +1,16 @@
-# Pulselink Frontend POC
+# React + Vite
 
-React-based frontend for the Pulselink blood donation management system.
+This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-## Setup Instructions
+Currently, two official plugins are available:
 
-1. Install dependencies:
-```bash
-npm install
-```
+- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
+- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
 
-2. Create `.env` file:
-```env
-REACT_APP_API_URL=http://localhost:5000/api
-```
+## React Compiler
 
-3. Start development server:
-```bash
-npm start
-```
+The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
 
-Frontend will run on `http://localhost:3000`
+## Expanding the ESLint configuration
 
-## Features
-
-- **Donor Registration**: Register blood donors with their details and blood group
-- **Patient Request**: Create urgent blood requests
-- **Donor Dashboard**: View and respond to blood requests
-- **Authentication**: JWT-based user authentication
-- **Responsive Design**: Works on desktop and mobile devices
-
-## Project Structure
-
-```
-src/
-├── components/          # Reusable UI components
-├── pages/              # Page components
-├── services/           # API integration
-├── context/            # React Context for state management
-├── styles/             # CSS/styling
-└── App.js              # Main app component
-```
-
-## Pages
-
-- `/` - Home page
-- `/login` - User login
-- `/register-donor` - Donor registration
-- `/donor-dashboard` - View blood requests (protected)
-- `/patient-request` - Create blood request (protected)
-
-## API Integration
-
-All API calls are made through the `apiClient` configured in `src/services/api.js` with automatic token injection.
+If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
