@@ -6,6 +6,8 @@ from datetime import date
 class DonorCreate(BaseModel):
     name: str
     phone: str
+    age: int
+    gender: str
     address: str
     blood_group: str
     last_donation_date: date
