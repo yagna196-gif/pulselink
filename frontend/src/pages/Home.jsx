@@ -8,16 +8,16 @@ function Home() {
       <Navbar />
 
       {/* Hero Section */}
-      <section className="text-center py-24 px-6 bg-red-50">
-        <h1 className="text-6xl font-bold text-red-600 mb-6">
+      <section className="text-center py-16 md:py-24 px-6 bg-red-50">
+        <h1 className="text-4xl md:text-6xl font-bold text-red-600 mb-6">
           🩸 PulseLink
         </h1>
 
-        <h2 className="text-3xl font-semibold text-gray-800 mb-4">
+        <h2 className="text-xl md:text-3xl font-semibold text-gray-800 mb-4">
           Connecting Blood Donors with Patients
         </h2>
 
-        <h2 className="text-3xl font-semibold text-gray-800 mb-8">
+        <h2 className="text-xl md:text-3xl font-semibold text-gray-800 mb-8">
           During Emergencies
         </h2>
 
@@ -26,7 +26,7 @@ function Home() {
           critical medical situations.
         </p>
 
-        <div className="flex justify-center gap-4">
+        <div className="flex flex-col sm:flex-row justify-center gap-4">
           <Link
             to="/donor-register"
             className="bg-red-600 hover:bg-red-700 text-white px-8 py-3 rounded-xl font-semibold shadow-lg transition"
@@ -45,7 +45,7 @@ function Home() {
 
       {/* Statistics Section */}
       <section className="max-w-6xl mx-auto px-6 py-16">
-        <div className="grid md:grid-cols-4 gap-6">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           <div className="bg-white p-8 rounded-2xl shadow-md text-center">
             <h3 className="text-4xl font-bold text-red-600">500+</h3>
             <p className="text-gray-600 mt-2">Registered Donors</p>
@@ -70,11 +70,11 @@ function Home() {
 
       {/* Features Section */}
       <section className="max-w-6xl mx-auto px-6 pb-20">
-        <h2 className="text-4xl font-bold text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold text-center mb-12">
           Why Choose PulseLink?
         </h2>
 
-        <div className="grid md:grid-cols-2 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           <div className="bg-white p-8 rounded-2xl shadow-md hover:shadow-xl transition">
             <h3 className="text-2xl font-bold mb-3">
               🩸 Instant Matching
