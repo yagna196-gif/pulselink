@@ -8,6 +8,8 @@ class Donor(Base):
     id = Column(Integer, primary_key=True, index=True)
     name = Column(String(100), nullable=False)
     phone = Column(String(15), nullable=False)
+    age = Column(Integer)
+    gender = Column(String(20))
     address = Column(Text)
     blood_group = Column(String(5), nullable=False)
     last_donation_date = Column(Date)
