@@ -1,96 +1,85 @@
+import { useEffect, useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import api from "../services/api"
 
 function Dashboard() {
+  const [stats, setStats] = useState({
+    total_donors: 0,
+    total_requests: 0,
+  })
+
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    fetchDashboard()
+  }, [])
+
+  const fetchDashboard = async () => {
+    try {
+      const response = await api.get("/dashboard")
+      setStats(response.data)
+    } catch (error) {
+      console.error("Dashboard Error:", error)
+    } finally {
+      setLoading(false)
+    }
+  }
+
   return (
     <div className="min-h-screen bg-gray-50">
       <Navbar />
 
       <div className="max-w-7xl mx-auto py-10 md:py-12 px-4 md:px-6">
+
         <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-10">
           📊 Dashboard
         </h1>
 
-        {/* Statistics Cards */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-
-          <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
-            <h2 className="text-4xl font-bold text-red-600">500</h2>
-            <p className="text-gray-600 mt-2">Total Donors</p>
+        {loading ? (
+          <div className="text-center text-xl">
+            Loading Dashboard...
           </div>
+        ) : (
+          <>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-10">
 
-          <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
-            <h2 className="text-4xl font-bold text-blue-600">50</h2>
-            <p className="text-gray-600 mt-2">Active Requests</p>
-          </div>
+              <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+                <h2 className="text-5xl font-bold text-red-600">
+                  {stats.total_donors}
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Registered Donors
+                </p>
+              </div>
 
-          <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
-            <h2 className="text-4xl font-bold text-green-600">35</h2>
-            <p className="text-gray-600 mt-2">Accepted Requests</p>
-          </div>
+              <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
+                <h2 className="text-5xl font-bold text-blue-600">
+                  {stats.total_requests}
+                </h2>
+                <p className="text-gray-600 mt-2">
+                  Blood Requests
+                </p>
+              </div>
 
-          <div className="bg-white rounded-2xl shadow-md p-6 text-center hover:shadow-xl transition">
-            <h2 className="text-4xl font-bold text-yellow-500">15</h2>
-            <p className="text-gray-600 mt-2">Pending Requests</p>
-          </div>
+            </div>
 
-        </div>
+            <div className="bg-white rounded-2xl shadow-md p-8">
+              <h2 className="text-2xl font-bold mb-4">
+                PulseLink Overview
+              </h2>
 
-        {/* Recent Requests */}
-        <div className="bg-white rounded-2xl shadow-md p-6">
-          <h2 className="text-2xl font-bold mb-6">
-            Recent Blood Requests
-          </h2>
+              <p className="text-gray-600 mb-3">
+                Total registered donors available in the system.
+              </p>
 
-          <div className="overflow-x-auto">
-            <table className="w-full min-w-[600px]">
-              <thead>
-                <tr className="border-b">
-                  <th className="text-left py-3">Patient</th>
-                  <th className="text-left py-3">Blood Group</th>
-                  <th className="text-left py-3">Hospital</th>
-                  <th className="text-left py-3">Status</th>
-                </tr>
-              </thead>
+              <p className="text-gray-600">
+                Total blood requests created by patients.
+              </p>
+            </div>
+          </>
+        )}
 
-              <tbody>
-                <tr className="border-b">
-                  <td className="py-3">Rahul Sharma</td>
-                  <td>O+</td>
-                  <td>City Hospital</td>
-                  <td>
-                    <span className="bg-yellow-100 text-yellow-700 px-3 py-1 rounded-full">
-                      Pending
-                    </span>
-                  </td>
-                </tr>
-
-                <tr className="border-b">
-                  <td className="py-3">Priya Singh</td>
-                  <td>A+</td>
-                  <td>Apollo Hospital</td>
-                  <td>
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-                      Accepted
-                    </span>
-                  </td>
-                </tr>
-
-                <tr>
-                  <td className="py-3">Aman Verma</td>
-                  <td>B+</td>
-                  <td>Care Hospital</td>
-                  <td>
-                    <span className="bg-green-100 text-green-700 px-3 py-1 rounded-full">
-                      Accepted
-                    </span>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-          </div>
-
-        </div>
       </div>
 
       <Footer />

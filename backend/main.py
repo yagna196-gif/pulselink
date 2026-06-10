@@ -1,14 +1,30 @@
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 from database import engine, SessionLocal
 from models import Base, Donor, BloodRequest
-from routes import donor, request
+
+from routes.donor import router as donor_router
+from routes.request import router as request_router
 
 Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="PulseLink API")
 
-app.include_router(donor.router)
-app.include_router(request.router)
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[
+        "http://localhost:5173",
+        "http://127.0.0.1:5173"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+# Include Routers
+app.include_router(donor_router)
+app.include_router(request_router)
 
 
 @app.get("/")
@@ -20,20 +36,12 @@ def root():
 def dashboard():
     db = SessionLocal()
 
-    try:
-        total_donors = db.query(Donor).count()
-        total_requests = db.query(BloodRequest).count()
-        available_donors = (
-            db.query(Donor)
-            .filter(Donor.availability_status == True)
-            .count()
-        )
+    donors_count = db.query(Donor).count()
+    requests_count = db.query(BloodRequest).count()
 
-        return {
-            "total_donors": total_donors,
-            "total_requests": total_requests,
-            "available_donors": available_donors
-        }
+    db.close()
 
-    finally:
-        db.close()
+    return {
+        "total_donors": donors_count,
+        "total_requests": requests_count
+    }
