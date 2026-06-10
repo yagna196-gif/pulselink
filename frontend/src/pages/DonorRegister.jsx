@@ -14,6 +14,7 @@ function DonorRegister() {
 
           <form className="space-y-5">
 
+            {/* Full Name */}
             <div>
               <label className="block font-medium mb-2">
                 Full Name
@@ -25,6 +26,34 @@ function DonorRegister() {
               />
             </div>
 
+            {/* Age */}
+            <div>
+              <label className="block font-medium mb-2">
+                Age
+              </label>
+              <input
+                type="number"
+                placeholder="Enter your age"
+                min="18"
+                max="65"
+                className="w-full border rounded-lg p-3"
+              />
+            </div>
+
+            {/* Gender */}
+            <div>
+              <label className="block font-medium mb-2">
+                Gender
+              </label>
+              <select className="w-full border rounded-lg p-3">
+                <option>Select Gender</option>
+                <option>Male</option>
+                <option>Female</option>
+                <option>Other</option>
+              </select>
+            </div>
+
+            {/* Phone Number */}
             <div>
               <label className="block font-medium mb-2">
                 Phone Number
@@ -36,6 +65,7 @@ function DonorRegister() {
               />
             </div>
 
+            {/* Address */}
             <div>
               <label className="block font-medium mb-2">
                 Address
@@ -47,11 +77,13 @@ function DonorRegister() {
               ></textarea>
             </div>
 
+            {/* Blood Group */}
             <div>
               <label className="block font-medium mb-2">
                 Blood Group
               </label>
               <select className="w-full border rounded-lg p-3">
+                <option>Select Blood Group</option>
                 <option>A+</option>
                 <option>A-</option>
                 <option>B+</option>
@@ -63,6 +95,7 @@ function DonorRegister() {
               </select>
             </div>
 
+            {/* Last Donation Date */}
             <div>
               <label className="block font-medium mb-2">
                 Last Donation Date
@@ -73,6 +106,7 @@ function DonorRegister() {
               />
             </div>
 
+            {/* Availability */}
             <div>
               <label className="block font-medium mb-2">
                 Available to Donate?
@@ -84,9 +118,10 @@ function DonorRegister() {
               </select>
             </div>
 
+            {/* Submit Button */}
             <button
               type="submit"
-              className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold"
+              className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
             >
               Register as Donor
             </button>
