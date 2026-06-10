@@ -2,17 +2,19 @@ import { Link } from "react-router-dom"
 
 function Navbar() {
   return (
-    <nav className="bg-red-600 text-white p-4 flex justify-between">
-      <h1 className="font-bold text-xl">
-        PulseLink
-      </h1>
-
-      <div className="space-x-4">
-        <Link to="/">Home</Link>
-        <Link to="/donor-register">Register</Link>
-        <Link to="/create-request">Request Blood</Link>
-        <Link to="/dashboard">Dashboard</Link>
-      </div>
+    <nav
+      style={{
+        padding: "15px",
+        backgroundColor: "#dc2626",
+        color: "white",
+        display: "flex",
+        gap: "20px"
+      }}
+    >
+      <Link to="/" style={{ color: "white" }}>Home</Link>
+      <Link to="/donor-register" style={{ color: "white" }}>Register</Link>
+      <Link to="/create-request" style={{ color: "white" }}>Request Blood</Link>
+      <Link to="/dashboard" style={{ color: "white" }}>Dashboard</Link>
     </nav>
   )
 }
