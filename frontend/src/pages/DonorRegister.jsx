@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import api from "../services/api"
 
 function DonorRegister() {
   const [formData, setFormData] = useState({
@@ -47,11 +48,30 @@ function DonorRegister() {
       return
     }
 
-    setLoading(true)
+    try {
+      setLoading(true)
+      setMessage("")
 
-    setTimeout(() => {
-      setLoading(false)
-      setMessage("✅ Donor registration form validated successfully!")
+      const donorData = {
+        name: formData.name,
+        phone: formData.phone,
+        age: Number(formData.age),
+        gender: formData.gender,
+        address: formData.address,
+        blood_group: formData.blood_group,
+        last_donation_date: formData.last_donation_date,
+        availability_status:
+          formData.availability_status === "Yes"
+      }
+
+      const response = await api.post(
+        "/donors/register",
+        donorData
+      )
+
+      console.log(response.data)
+
+      setMessage("✅ Donor registered successfully!")
 
       setFormData({
         name: "",
@@ -63,7 +83,15 @@ function DonorRegister() {
         last_donation_date: "",
         availability_status: "Yes"
       })
-    }, 1500)
+    } catch (error) {
+      console.error(error)
+
+      setMessage(
+        "❌ Registration failed. Please try again."
+      )
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -72,6 +100,7 @@ function DonorRegister() {
 
       <div className="max-w-3xl mx-auto py-10 md:py-16 px-4 md:px-6">
         <div className="bg-white shadow-xl rounded-2xl p-6 md:p-8">
+
           <h1 className="text-3xl md:text-4xl font-bold text-center text-red-600 mb-8">
             🩸 Donor Registration
           </h1>
@@ -172,10 +201,13 @@ function DonorRegister() {
               disabled={loading}
               className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
             >
-              {loading ? "Registering..." : "Register as Donor"}
+              {loading
+                ? "Registering..."
+                : "Register as Donor"}
             </button>
 
           </form>
+
         </div>
       </div>
 

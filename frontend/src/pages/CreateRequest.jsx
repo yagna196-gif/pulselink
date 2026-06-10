@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import api from "../services/api"
 
 function CreateRequest() {
   const [formData, setFormData] = useState({
@@ -47,10 +48,24 @@ function CreateRequest() {
       return
     }
 
-    setLoading(true)
+    try {
+      setLoading(true)
+      setMessage("")
 
-    setTimeout(() => {
-      setLoading(false)
+      const requestData = {
+        patient_name: formData.patient_name,
+        phone: formData.phone,
+        hospital_address: formData.hospital_address,
+        blood_group: formData.blood_group,
+        notes: formData.notes
+      }
+
+      const response = await api.post(
+        "/requests/",
+        requestData
+      )
+
+      console.log(response.data)
 
       setMessage("✅ Blood request submitted successfully!")
 
@@ -64,7 +79,12 @@ function CreateRequest() {
         units_required: "",
         notes: ""
       })
-    }, 1500)
+    } catch (error) {
+      console.error(error)
+      setMessage("❌ Failed to submit blood request")
+    } finally {
+      setLoading(false)
+    }
   }
 
   return (
@@ -171,7 +191,9 @@ function CreateRequest() {
               disabled={loading}
               className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
             >
-              {loading ? "Submitting..." : "Submit Blood Request"}
+              {loading
+                ? "Submitting..."
+                : "Submit Blood Request"}
             </button>
 
           </form>
