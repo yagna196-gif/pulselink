@@ -1,6 +1,6 @@
 function Footer() {
   return (
-    <footer className="bg-gray-900 text-white py-8 text-center">
+    <footer className="bg-gray-900 text-white py-8 text-center mt-auto">
       <h3 className="text-xl font-bold mb-2">
         PulseLink ❤️
       </h3>
