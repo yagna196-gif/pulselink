@@ -10,7 +10,45 @@ function Dashboard() {
   })
 
   const [loading, setLoading] = useState(true)
+  const language = localStorage.getItem("language") || "en"
 
+const text = {
+  en: {
+    dashboard: "Dashboard",
+    loading: "Loading Dashboard...",
+    donors: "Registered Donors",
+    requests: "Blood Requests",
+    overview: "PulseLink Overview",
+    donorsInfo:
+      "Total registered donors available in the system.",
+    requestsInfo:
+      "Total blood requests created by patients."
+  },
+
+  hi: {
+    dashboard: "डैशबोर्ड",
+    loading: "डैशबोर्ड लोड हो रहा है...",
+    donors: "पंजीकृत दाता",
+    requests: "रक्त अनुरोध",
+    overview: "PulseLink अवलोकन",
+    donorsInfo:
+      "सिस्टम में उपलब्ध कुल पंजीकृत रक्तदाता।",
+    requestsInfo:
+      "मरीजों द्वारा बनाए गए कुल रक्त अनुरोध।"
+  },
+
+  te: {
+    dashboard: "డ్యాష్‌బోర్డ్",
+    loading: "డ్యాష్‌బోర్డ్ లోడ్ అవుతోంది...",
+    donors: "నమోదైన దాతలు",
+    requests: "రక్త అభ్యర్థనలు",
+    overview: "PulseLink అవలోకనం",
+    donorsInfo:
+      "సిస్టమ్‌లో అందుబాటులో ఉన్న మొత్తం నమోదైన దాతలు.",
+    requestsInfo:
+      "రోగులు సృష్టించిన మొత్తం రక్త అభ్యర్థనలు."
+  }
+}
   useEffect(() => {
     fetchDashboard()
   }, [])
@@ -49,12 +87,12 @@ function Dashboard() {
       <div className="max-w-7xl mx-auto py-10 px-4 md:px-6">
 
         <h1 className="text-3xl md:text-4xl font-bold text-red-600 mb-8">
-          📊 Dashboard
+          📊 {text[language].dashboard}
         </h1>
 
         {loading ? (
           <div className="text-center text-xl">
-            Loading Dashboard...
+            {text[language].loading}
           </div>
         ) : (
           <>
@@ -66,7 +104,7 @@ function Dashboard() {
                   {stats.total_donors}
                 </h2>
                 <p className="text-gray-600 mt-2">
-                  Registered Donors
+                  {text[language].donors}
                 </p>
               </div>
 
@@ -75,7 +113,7 @@ function Dashboard() {
                   {stats.total_requests}
                 </h2>
                 <p className="text-gray-600 mt-2">
-                  Blood Requests
+                  {text[language].requests}
                 </p>
               </div>
 
@@ -84,18 +122,18 @@ function Dashboard() {
             {/* Notification Status */}
             <div className="bg-green-50 border border-green-200 rounded-2xl p-6 mb-8">
               <h2 className="text-xl font-bold text-green-700 mb-2">
-                📱 Notification Status
+                📱 {text[language].notificationStatus}
               </h2>
 
               <p className="text-green-600">
-                Notification system ready for donor alerts.
+                {text[language].notificationReady}
               </p>
             </div>
 
             {/* Recent Donors */}
             <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
               <h2 className="text-2xl font-bold mb-4">
-                🩸 Recent Donors
+                🩸 {text[language].recentDonors}
               </h2>
 
               <div className="space-y-4">
@@ -109,11 +147,11 @@ function Dashboard() {
                     </p>
 
                     <p>
-                      Blood Group: {donor.blood_group}
+                      {text[language].bloodGroup}: {donor.blood_group}
                     </p>
 
                     <p>
-                      Phone: {donor.phone}
+                      {text[language].phone}:{donor.phone}
                     </p>
                   </div>
                 ))}
@@ -123,7 +161,7 @@ function Dashboard() {
             {/* Recent Requests */}
             <div className="bg-white rounded-2xl shadow-md p-6 mb-8">
               <h2 className="text-2xl font-bold mb-4">
-                🚑 Recent Blood Requests
+                🚑 {text[language].recentRequests}
               </h2>
 
               <div className="space-y-4">
@@ -137,11 +175,11 @@ function Dashboard() {
                     </p>
 
                     <p>
-                      Blood Group: {request.blood_group}
+                      {text[language].bloodGroup}: {request.blood_group}
                     </p>
 
                     <p>
-                      Status: {request.status}
+                      {text[language].status}:{request.status}
                     </p>
                   </div>
                 ))}
@@ -151,12 +189,12 @@ function Dashboard() {
             {/* Matching Donors Section */}
             <div className="bg-red-50 border border-red-200 rounded-2xl p-6">
               <h2 className="text-2xl font-bold text-red-600 mb-4">
-                🔍 Matching Donors
+                🔍 {text[language].matchingDonors}
               </h2>
 
               <p className="text-gray-700">
-                This section will automatically display matching donors
-                after a blood request is created.
+                {text[language].matchingDonorsInfo}
+                
               </p>
             </div>
           </>
