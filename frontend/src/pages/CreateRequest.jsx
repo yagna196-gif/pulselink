@@ -1,6 +1,7 @@
 import { useState } from "react"
 import Navbar from "../components/Navbar"
 import Footer from "../components/Footer"
+import MatchingDonors from "../components/MatchingDonors"
 import api from "../services/api"
 
 function CreateRequest() {
@@ -17,6 +18,9 @@ function CreateRequest() {
 
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
+
+  const [matchedDonors, setMatchedDonors] = useState([])
+  const [notificationsSent, setNotificationsSent] = useState(0)
 
   const handleChange = (e) => {
     setFormData({
@@ -65,7 +69,16 @@ function CreateRequest() {
         requestData
       )
 
-      console.log(response.data)
+      console.log("FULL RESPONSE:", response.data)
+      console.log("DONORS:", response.data.matching_donors)
+
+      setMatchedDonors(
+        response.data.matching_donors || []
+      )
+
+      setNotificationsSent(
+        response.data.notifications_sent || 0
+      )
 
       setMessage("✅ Blood request submitted successfully!")
 
@@ -92,6 +105,7 @@ function CreateRequest() {
       <Navbar />
 
       <div className="max-w-3xl mx-auto py-10 md:py-16 px-4 md:px-6">
+
         <div className="bg-white shadow-xl rounded-2xl p-6 md:p-8">
 
           <h1 className="text-3xl md:text-4xl font-bold text-center text-red-600 mb-8">
@@ -199,6 +213,15 @@ function CreateRequest() {
           </form>
 
         </div>
+
+        {notificationsSent > 0 && (
+          <div className="bg-green-50 border border-green-200 rounded-xl p-4 mt-6">
+            📱 Notifications sent to {notificationsSent} matching donor(s)
+          </div>
+        )}
+
+        <MatchingDonors donors={matchedDonors} />
+
       </div>
 
       <Footer />
