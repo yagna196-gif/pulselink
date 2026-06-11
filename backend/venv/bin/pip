@@ -1,4 +1,4 @@
-#!/home/sreeshanth/pulselink/backend/venv/bin/python
+#!/home/yagna/Desktop/Pulselink/backend/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
