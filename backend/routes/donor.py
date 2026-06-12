@@ -33,10 +33,7 @@ def register_donor(donor: DonorCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_donor)
 
-    return {
-        "message": "Donor registered successfully",
-        "donor": new_donor
-    }
+    return {"message": "Donor registered successfully", "donor": new_donor}
 
 
 @router.get("/")
