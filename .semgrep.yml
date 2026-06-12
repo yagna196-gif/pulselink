@@ -1,0 +1,6 @@
+rules:
+  - id: pulselink-no-hardcoded-secrets
+    pattern: $KEY = "$VALUE"
+    message: Avoid hardcoded secrets
+    severity: WARNING
+    languages: [python]
