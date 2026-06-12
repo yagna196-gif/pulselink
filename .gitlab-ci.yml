@@ -1,0 +1,14 @@
+stages:
+  - test
+
+test:
+  stage: test
+  image: python:3.12
+
+  before_script:
+    - pip install -r backend/requirements.txt
+    - pip install pytest pytest-cov
+
+  script:
+    - cd backend
+    - pytest --cov=. --cov-report=term --cov-fail-under=50
