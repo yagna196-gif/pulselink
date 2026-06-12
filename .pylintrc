@@ -1,0 +1,5 @@
+[MASTER]
+ignore=venv,__pycache__,node_modules
+
+[MESSAGES CONTROL]
+disable=C0114,C0115,C0116,R0801
