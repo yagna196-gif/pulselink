@@ -8,9 +8,10 @@ body = """
 {% for commit in commits %}
 
 * {{ commit.message }}
-  {% endfor %}
-  {% endfor %}
-  """
+{% endfor %}
+
+{% endfor %}
+"""
 
 [git]
 conventional_commits = true
