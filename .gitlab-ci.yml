@@ -59,11 +59,14 @@ gitleaks:
 =======
 =======
 
-* lint
-* format
-* type_check
-* test
-* security
+  - lint
+  - format
+  - type_check
+  - test
+  - security
+
+
+
 
 lint:
 stage: lint
