@@ -1,3 +1,16 @@
 [tool.ruff]
 line-length = 88
 target-version = "py312"
+exclude = ["backend/venv", "frontend/node_modules"]
+
+[tool.mypy]
+python_version = "3.12"
+ignore_missing_imports = true
+exclude = ["backend/venv"]
+
+[tool.bandit]
+exclude_dirs = ["backend/venv", "frontend/node_modules"]
+
+[tool.pylint]
+ignore = ["venv", "__pycache__", "node_modules"]
+disable = ["C0114", "C0115", "C0116", "R0801"]
