@@ -37,23 +37,20 @@ def create_request(request: BloodRequestCreate, db: Session = Depends(get_db)):
     db.commit()
     db.refresh(new_request)
 
-    matching_donors = db.query(Donor).filter(
-        Donor.blood_group == request.blood_group,
-        Donor.availability_status 
-    ).all()
+    matching_donors = (
+        db.query(Donor)
+        .filter(Donor.blood_group == request.blood_group, Donor.availability_status)
+        .all()
+    )
 
     for donor in matching_donors:
-        send_notification(
-            donor.phone,
-            request.blood_group,
-            request.hospital_address
-        )
+        send_notification(donor.phone, request.blood_group, request.hospital_address)
 
     return {
         "message": "Blood request created successfully",
         "request": new_request,
         "matching_donors": matching_donors,
-        "notifications_sent": len(matching_donors)
+        "notifications_sent": len(matching_donors),
     }
 
 
@@ -64,13 +61,11 @@ def get_requests(db: Session = Depends(get_db)):
 
 
 @router.get("/match/{blood_group}")
-def get_matching_donors(
-    blood_group: str,
-    db: Session = Depends(get_db)
-):
-    donors = db.query(Donor).filter(
-        Donor.blood_group == blood_group,
-        Donor.availability_status 
-    ).all()
+def get_matching_donors(blood_group: str, db: Session = Depends(get_db)):
+    donors = (
+        db.query(Donor)
+        .filter(Donor.blood_group == blood_group, Donor.availability_status)
+        .all()
+    )
 
     return donors

@@ -13,10 +13,7 @@ app = FastAPI(title="PulseLink API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[
-        "http://localhost:5173",
-        "http://127.0.0.1:5173"
-    ],
+    allow_origins=["http://localhost:5173", "http://127.0.0.1:5173"],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
@@ -41,7 +38,4 @@ def dashboard():
 
     db.close()
 
-    return {
-        "total_donors": donors_count,
-        "total_requests": requests_count
-    }
+    return {"total_donors": donors_count, "total_requests": requests_count}
