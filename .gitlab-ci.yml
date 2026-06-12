@@ -1,14 +1,51 @@
 stages:
+  - lint
+  - format
+  - type_check
   - test
+  - security
+
+lint:
+  stage: lint
+  image: python:3.12
+  script:
+    - pip install ruff
+    - ruff check backend
+
+format:
+  stage: format
+  image: python:3.12
+  script:
+    - pip install ruff
+    - ruff format --check backend
+
+type_check:
+  stage: type_check
+  image: python:3.12
+  script:
+    - pip install mypy
+    - mypy backend
 
 test:
   stage: test
   image: python:3.12
-
   before_script:
     - pip install -r backend/requirements.txt
     - pip install pytest pytest-cov
-
   script:
     - cd backend
     - pytest --cov=. --cov-report=term --cov-fail-under=50
+  coverage: '/TOTAL.*\s+(\d+%)/'
+
+dependency_audit:
+  stage: security
+  image: python:3.12
+  script:
+    - pip install pip-audit
+    - pip-audit
+
+gitleaks:
+  stage: security
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --source . --no-git
