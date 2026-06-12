@@ -48,4 +48,10 @@ secret_scan:
   stage: security
   image: python:3.12
   script:
-    - echo "Secret scanning enabled"
+    - gitleaks detect --source . --no-git
+
+gitleaks:
+  stage: security
+  image: zricethezav/gitleaks:latest
+  script:
+    - gitleaks detect --source . --no-git
