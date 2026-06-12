@@ -39,7 +39,7 @@ def create_request(request: BloodRequestCreate, db: Session = Depends(get_db)):
 
     matching_donors = db.query(Donor).filter(
         Donor.blood_group == request.blood_group,
-        Donor.availability_status == True
+        Donor.availability_status 
     ).all()
 
     for donor in matching_donors:
@@ -70,7 +70,7 @@ def get_matching_donors(
 ):
     donors = db.query(Donor).filter(
         Donor.blood_group == blood_group,
-        Donor.availability_status == True
+        Donor.availability_status 
     ).all()
 
     return donors
