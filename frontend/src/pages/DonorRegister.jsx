@@ -17,6 +17,51 @@ function DonorRegister() {
 
   const [message, setMessage] = useState("")
   const [loading, setLoading] = useState(false)
+  const language = localStorage.getItem("language") || "en"
+
+const text = {
+  en: {
+    title: "Donor Registration",
+    name: "Full Name",
+    age: "Age",
+    gender: "Select Gender",
+    phone: "Phone Number",
+    address: "Address",
+    bloodGroup: "Select Blood Group",
+    register: "Register as Donor",
+    registering: "Registering...",
+    yes: "Yes",
+    no: "No"
+  },
+
+  hi: {
+    title: "दाता पंजीकरण",
+    name: "पूरा नाम",
+    age: "आयु",
+    gender: "लिंग चुनें",
+    phone: "फोन नंबर",
+    address: "पता",
+    bloodGroup: "रक्त समूह चुनें",
+    register: "दाता के रूप में पंजीकरण करें",
+    registering: "पंजीकरण हो रहा है...",
+    yes: "हाँ",
+    no: "नहीं"
+  },
+
+  te: {
+    title: "దాత నమోదు",
+    name: "పూర్తి పేరు",
+    age: "వయస్సు",
+    gender: "లింగాన్ని ఎంచుకోండి",
+    phone: "ఫోన్ నంబర్",
+    address: "చిరునామా",
+    bloodGroup: "రక్త గ్రూప్ ఎంచుకోండి",
+    register: "దాతగా నమోదు చేయండి",
+    registering: "నమోదు జరుగుతోంది...",
+    yes: "అవును",
+    no: "కాదు"
+  }
+}
 
   const handleChange = (e) => {
     setFormData({
@@ -102,7 +147,7 @@ function DonorRegister() {
         <div className="bg-white shadow-xl rounded-2xl p-6 md:p-8">
 
           <h1 className="text-3xl md:text-4xl font-bold text-center text-red-600 mb-8">
-            🩸 Donor Registration
+            🩸 {text[language].title}
           </h1>
 
           {message && (
@@ -116,7 +161,7 @@ function DonorRegister() {
             <input
               type="text"
               name="name"
-              placeholder="Full Name"
+              placeholder={text[language].name}
               value={formData.name}
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
@@ -125,7 +170,7 @@ function DonorRegister() {
             <input
               type="number"
               name="age"
-              placeholder="Age"
+              placeholder={text[language].age}
               value={formData.age}
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
@@ -137,7 +182,7 @@ function DonorRegister() {
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
             >
-              <option value="">Select Gender</option>
+              <option value="">{text[language].gender}</option>
               <option>Male</option>
               <option>Female</option>
               <option>Other</option>
@@ -146,7 +191,7 @@ function DonorRegister() {
             <input
               type="tel"
               name="phone"
-              placeholder="Phone Number"
+              placeholder={text[language].phone}
               value={formData.phone}
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
@@ -154,7 +199,7 @@ function DonorRegister() {
 
             <textarea
               name="address"
-              placeholder="Address"
+              placeholder={text[language].address}
               rows="3"
               value={formData.address}
               onChange={handleChange}
@@ -167,7 +212,7 @@ function DonorRegister() {
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
             >
-              <option value="">Select Blood Group</option>
+              <option value="">{text[language].bloodGroup}</option>
               <option>A+</option>
               <option>A-</option>
               <option>B+</option>
@@ -192,8 +237,9 @@ function DonorRegister() {
               onChange={handleChange}
               className="w-full border rounded-lg p-3"
             >
-              <option>Yes</option>
-              <option>No</option>
+              <option>{text[language].yes}</option>
+              <option>{text[language].no}</option>
+              
             </select>
 
             <button
@@ -202,8 +248,8 @@ function DonorRegister() {
               className="w-full bg-red-600 hover:bg-red-700 text-white py-3 rounded-lg font-semibold transition"
             >
               {loading
-                ? "Registering..."
-                : "Register as Donor"}
+                ? text[language].registering
+                : text[language].register}
             </button>
 
           </form>

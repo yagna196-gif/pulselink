@@ -1,45 +1,98 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Link } from "react-router-dom"
 import { Menu, X } from "lucide-react"
 
 function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
+  const [language, setLanguage] = useState(
+    localStorage.getItem("language") || "en"
+  )
+
+  useEffect(() => {
+    localStorage.setItem("language", language)
+  }, [language])
+
+  const text = {
+    en: {
+      home: "Home",
+      register: "Register",
+      request: "Request Blood",
+      dashboard: "Dashboard",
+    },
+
+    hi: {
+      home: "होम",
+      register: "पंजीकरण",
+      request: "रक्त अनुरोध",
+      dashboard: "डैशबोर्ड",
+    },
+
+    te: {
+      home: "హోమ్",
+      register: "నమోదు",
+      request: "రక్త అభ్యర్థన",
+      dashboard: "డ్యాష్‌బోర్డ్",
+    },
+  }
+
+  const handleLanguageChange = (e) => {
+    localStorage.setItem("language", e.target.value)
+    setLanguage(e.target.value)
+    window.location.reload()
+  }
+
   return (
     <nav className="bg-red-600 text-white shadow-lg">
       <div className="max-w-7xl mx-auto px-4 py-4">
 
         <div className="flex justify-between items-center">
+
           <h1 className="text-2xl font-bold">
             🩸 PulseLink
           </h1>
 
           {/* Desktop Menu */}
-          <div className="hidden md:flex gap-6 font-medium">
-            <Link to="/" className="hover:text-red-200 transition">
-              Home
+          <div className="hidden md:flex gap-6 items-center font-medium">
+
+            <Link
+              to="/"
+              className="hover:text-red-200 transition"
+            >
+              {text[language].home}
             </Link>
 
             <Link
               to="/donor-register"
               className="hover:text-red-200 transition"
             >
-              Register
+              {text[language].register}
             </Link>
 
             <Link
               to="/create-request"
               className="hover:text-red-200 transition"
             >
-              Request Blood
+              {text[language].request}
             </Link>
 
             <Link
               to="/dashboard"
               className="hover:text-red-200 transition"
             >
-              Dashboard
+              {text[language].dashboard}
             </Link>
+
+            <select
+              value={language}
+              onChange={handleLanguageChange}
+              className="text-black rounded px-2 py-1"
+            >
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="te">తెలుగు</option>
+            </select>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -49,6 +102,7 @@ function Navbar() {
           >
             {isOpen ? <X size={30} /> : <Menu size={30} />}
           </button>
+
         </div>
 
         {/* Mobile Menu */}
@@ -60,7 +114,7 @@ function Navbar() {
               onClick={() => setIsOpen(false)}
               className="hover:text-red-200"
             >
-              Home
+              {text[language].home}
             </Link>
 
             <Link
@@ -68,7 +122,7 @@ function Navbar() {
               onClick={() => setIsOpen(false)}
               className="hover:text-red-200"
             >
-              Register
+              {text[language].register}
             </Link>
 
             <Link
@@ -76,7 +130,7 @@ function Navbar() {
               onClick={() => setIsOpen(false)}
               className="hover:text-red-200"
             >
-              Request Blood
+              {text[language].request}
             </Link>
 
             <Link
@@ -84,8 +138,18 @@ function Navbar() {
               onClick={() => setIsOpen(false)}
               className="hover:text-red-200"
             >
-              Dashboard
+              {text[language].dashboard}
             </Link>
+
+            <select
+              value={language}
+              onChange={handleLanguageChange}
+              className="text-black rounded px-2 py-1 w-40"
+            >
+              <option value="en">English</option>
+              <option value="hi">हिन्दी</option>
+              <option value="te">తెలుగు</option>
+            </select>
 
           </div>
         )}
