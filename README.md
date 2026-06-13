@@ -273,6 +273,7 @@ Backend:
 https://pulselink-1.onrender.com/docs
 ```
 
+<<<<<<< HEAD
 ## Features
 - Donor Registration
 - Blood Request Creation
@@ -284,6 +285,8 @@ https://pulselink-1.onrender.com/docs
 - GitLab CI/CD
 
 
+=======
+>>>>>>> 9593986 (updated readme)
 ## 👨‍💻 Developer
 
 **Project:** PulseLink
