@@ -270,7 +270,7 @@ https://pulselink-2.onrender.com
 Backend:
 
 ```text
-https://pulselink-1.onrender.com
+https://pulselink-1.onrender.com/docs
 ```
 
 ## Features
