@@ -264,22 +264,25 @@ npm run dev
 Frontend:
 
 ```text
-http://localhost:5173
+https://pulselink-2.onrender.com
 ```
 
 Backend:
 
 ```text
-http://localhost:8000
+https://pulselink-1.onrender.com
 ```
 
-API Documentation:
+## Features
+- Donor Registration
+- Blood Request Creation
+- Dashboard Statistics
+- FastAPI Backend
+- React Frontend
+- SQLite Database
+- Docker Support
+- GitLab CI/CD
 
-```text
-http://localhost:8000/docs
-```
-
----
 
 ## 👨‍💻 Developer
 
