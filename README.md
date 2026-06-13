@@ -265,6 +265,7 @@ Frontend:
 
 ```text
 https://pulselink-2.onrender.com
+https://pulselink-2.onrender.com
 ```
 
 Backend:
@@ -272,6 +273,19 @@ Backend:
 ```text
 https://pulselink-1.onrender.com/docs
 ```
+https://pulselink-1.onrender.com
+```
+
+## Features
+- Donor Registration
+- Blood Request Creation
+- Dashboard Statistics
+- FastAPI Backend
+- React Frontend
+- SQLite Database
+- Docker Support
+- GitLab CI/CD
+
 
 <<<<<<< HEAD
 ## Features
