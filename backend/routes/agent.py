@@ -1,16 +1,14 @@
 from fastapi import APIRouter
-from agents.blood_agent import PulseLinkAgent
+from tools import search_donors
 
 router = APIRouter()
-
-agent = PulseLinkAgent()
 
 
 @router.get("/agent")
 def agent_status():
-    return {"status": "PulseLink Agent Active"}
+    return {"status": "PulseLink ADK Agent Active"}
 
 
 @router.get("/agent/search")
 def search(blood_group: str):
-    return agent.find_donors(blood_group)
+    return search_donors(blood_group)
