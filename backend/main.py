@@ -6,7 +6,6 @@ from models import Base, Donor, BloodRequest
 
 from routes.donor import router as donor_router
 from routes.request import router as request_router
-from routes.agent import router as agent_router
 
 Base.metadata.create_all(bind=engine)
 
@@ -28,7 +27,6 @@ app.add_middleware(
 # Include Routers
 app.include_router(donor_router)
 app.include_router(request_router)
-app.include_router(agent_router)
 
 
 @app.get("/")
