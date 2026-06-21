@@ -115,20 +115,29 @@ function Home() {
         </p>
 
         <div className="flex flex-col sm:flex-row justify-center gap-4">
-          <Link
-            to="/donor-register"
-            className="bg-red-600 hover:bg-red-700 hover:scale-105 transform duration-200 text-white px-8 py-3 rounded-xl font-semibold shadow-lg"
-          >
-            {text[language].donor}
-          </Link>
 
-          <Link
-            to="/create-request"
-            className="bg-white border border-red-600 text-red-600 px-8 py-3 rounded-xl font-semibold shadow-lg hover:bg-red-50 hover:scale-105 transform duration-200"
-          >
-            {text[language].request}
-          </Link>
-        </div>
+  <Link
+    to="/donor-register"
+    className="bg-red-600 hover:bg-red-700 hover:scale-105 transform duration-200 text-white px-8 py-3 rounded-xl font-semibold shadow-lg"
+  >
+    {text[language].donor}
+  </Link>
+
+  <Link
+    to="/create-request"
+    className="bg-white border border-red-600 text-red-600 px-8 py-3 rounded-xl font-semibold shadow-lg hover:bg-red-50 hover:scale-105 transform duration-200"
+  >
+    {text[language].request}
+  </Link>
+
+  <Link
+    to="/assistant"
+    className="bg-blue-600 hover:bg-blue-700 hover:scale-105 transform duration-200 text-white px-8 py-3 rounded-xl font-semibold shadow-lg"
+  >
+    AI Assistant
+  </Link>
+
+</div>
       </section>
 
       <section className="max-w-6xl mx-auto px-6 py-16">
